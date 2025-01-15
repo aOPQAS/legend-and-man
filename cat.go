@@ -65,6 +65,7 @@ func Cat(filename string, opts Options) {
 	}
 	rows := make([]string, 0)
 	row := ""
+
 	for _, char := range data {
 		if char == 10 {
 			row += string(char)
@@ -86,8 +87,9 @@ func Cat(filename string, opts Options) {
 
 		fmt.Print(row)
 
+		// Показать символы $ в конце строк
 		if opts.E {
-			row += "S"
+			row += "$"
 		}
 	}
 }
