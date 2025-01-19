@@ -40,9 +40,10 @@ func ParseArgs() (Options, []string) {
 }
 
 func Cat(filename string, opts Options) {
+	var language string
 	data, err := os.ReadFile(filename)
 	if err != nil {
-		fmt.Println("Ошибка при чтении файла", filename, err)
+		fmt.Println("Error reading file", filename, err)
 		return
 	}
 
@@ -52,19 +53,36 @@ func Cat(filename string, opts Options) {
 	}
 
 	if opts.H {
-		fmt.Println(
+		fmt.Println("Which language would be more convenient for you? (English/Russian)")
+		if language == "Русский" {
+			fmt.Println(
 
-			"-b, Нумерация только непустых строк",
-			"-e, Показать символы $ в конце строк",
-			"-n, Нумерация всех строк",
-			"-s, Сжать последовательные пустые строки",
-			"-t, Отображение табуляции как ^I",
-			"-h, Показать справку",
-			"-v, Показать версию программы",
-		)
+				"-b, Нумерация только непустых строк",
+				"-e, Показать символы $ в конце строк",
+				"-n, Нумерация всех строк",
+				"-s, Сжать последовательные пустые строки",
+				"-t, Отображение табуляции как ^I",
+				"-h, Показать справку",
+				"-v, Показать версию программы",
+			)
+		} else {
+			fmt.Println(
+
+				"-b, Numbering only non-empty lines",
+				"-e, Show the $ characters at the end of the lines",
+				"-n, Numbering of all lines",
+				"-s, Compress consecutive blank lines",
+				"-t, Tabulation display as ^I",
+				"-h, Show the help",
+				"-v, Show the program version",
+			)
+		}
+		return
 	}
+
 	rows := make([]string, 0)
 	row := ""
+	var previousLine string
 
 	for _, char := range data {
 		if char == 10 {
@@ -87,29 +105,32 @@ func Cat(filename string, opts Options) {
 
 		fmt.Print(row)
 
-		// Показать символы $ в конце строк
 		if opts.E {
 			row += "$"
 		}
 
-		// -b - Нумерация только непустых строк
 		if opts.B {
 			trimResult := strings.TrimSpace(row)
 			if trimResult != "" {
 				fmt.Printf("\t%d ", numRow+1)
 			}
 		}
-		// code ...
 
-		// -s - Сжать последовательные пустые строки
-
-		// code ...
+		if opts.S {
+			if strings.TrimSpace(row) == "" && strings.TrimSpace(previousLine) == "" {
+				continue
+			}
+		}
+		previousLine = row
 
 	}
 }
 
 func main() {
 	opts, files := ParseArgs()
+	if len(files) == 0 {
+		fmt.Print("your file is empty")
+	}
 	for _, file := range files {
 		Cat(file, opts)
 	}
