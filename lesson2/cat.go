@@ -105,6 +105,9 @@ func Cat(filename string, opts Options) {
 	}
 }
 
+// Подправить работу флага -e, сейчас выводит $ на новой строке
+// Подправить работу флага -T, не показывается табуляция
+
 func main() {
 	opts, files := ParseArgs()
 
@@ -119,13 +122,13 @@ func main() {
 	if opts.H {
 		fmt.Println(
 
-			"-b, Нумерация только непустых строк\n",
-			"-e, Показать символы $ в конце строк\n",
-			"-n, Нумерация всех строк\n",
-			"-s, Сжать последовательные пустые строки\n",
-			"-t, Отображение табуляции как ^I\n",
-			"-h, Показать справку\n",
-			"-v, Показать версию программы",
+			"-b, Number only non-empty lines\n",
+			"-e, Show $ symbols at the end of lines\n",
+			"-n, Number all lines\n",
+			"-s, Squeeze consecutive empty lines\n",
+			"-t, Display tab as ^I\n",
+			"-h, Show help\n",
+			"-v, Show program version",
 		)
 	} else {
 		for _, file := range files {
