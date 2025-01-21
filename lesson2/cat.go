@@ -40,7 +40,7 @@ func ParseArgs() (Options, []string) {
 }
 
 func Cat(filename string, opts Options) {
-	var language string
+
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Println("Error reading file", filename, err)
@@ -52,37 +52,14 @@ func Cat(filename string, opts Options) {
 		return
 	}
 
-	if opts.H {
-		fmt.Println("Which language would be more convenient for you? (English/Russian)")
-		if language == "Русский" {
-			fmt.Println(
-
-				"-b, Нумерация только непустых строк",
-				"-e, Показать символы $ в конце строк",
-				"-n, Нумерация всех строк",
-				"-s, Сжать последовательные пустые строки",
-				"-t, Отображение табуляции как ^I",
-				"-h, Показать справку",
-				"-v, Показать версию программы",
-			)
-		} else {
-			fmt.Println(
-
-				"-b, Numbering only non-empty lines",
-				"-e, Show the $ characters at the end of the lines",
-				"-n, Numbering of all lines",
-				"-s, Compress consecutive blank lines",
-				"-t, Tabulation display as ^I",
-				"-h, Show the help",
-				"-v, Show the program version",
-			)
-		}
-		return
-	}
-
 	rows := make([]string, 0)
 	row := ""
-	var previousLine string
+	previousLine := ""
+	countrow := 1
+
+	if opts.E {
+		row += "$"
+	}
 
 	for _, char := range data {
 		if char == 10 {
@@ -96,24 +73,15 @@ func Cat(filename string, opts Options) {
 
 	for numRow, row := range rows {
 		if opts.T {
-			row = strings.Replace(row, "\t", "^I")
+			row = strings.Replace(row, "\t", "^I", -1)
 		}
 
 		if opts.N {
 			fmt.Printf("\t%d ", numRow+1)
 		}
 
-		fmt.Print(row)
-
 		if opts.E {
 			row += "$"
-		}
-
-		if opts.B {
-			trimResult := strings.TrimSpace(row)
-			if trimResult != "" {
-				fmt.Printf("\t%d ", numRow+1)
-			}
 		}
 
 		if opts.S {
@@ -121,18 +89,53 @@ func Cat(filename string, opts Options) {
 				continue
 			}
 		}
+
+		if opts.B {
+			trimResult := strings.TrimSpace(row)
+
+			if trimResult != "" {
+				fmt.Printf("\t%d ", countrow)
+				countrow++
+			}
+		}
+
 		previousLine = row
+		fmt.Print(row)
 
 	}
 }
 
+// TODO:
+// 1. Подправить работу комбинаций флагов (сначала почекать, потом исправить) +
+// 2. Подправить работу флага -e, сейчас выводит $ на новой строке
+// 3. При комбинации флагов -s и -n ломается нумерация строк, починить +
+
 func main() {
 	opts, files := ParseArgs()
-	if len(files) == 0 {
+
+	if opts.B && opts.N {
+		opts.N = false
+	}
+
+	if len(files) == 0 && !opts.H {
 		fmt.Print("your file is empty")
 	}
-	for _, file := range files {
-		Cat(file, opts)
+
+	if opts.H {
+		fmt.Println(
+
+			"-b, Нумерация только непустых строк\n",
+			"-e, Показать символы $ в конце строк\n",
+			"-n, Нумерация всех строк\n",
+			"-s, Сжать последовательные пустые строки\n",
+			"-t, Отображение табуляции как ^I\n",
+			"-h, Показать справку\n",
+			"-v, Показать версию программы",
+		)
+	} else {
+		for _, file := range files {
+			Cat(file, opts)
+		}
 	}
 
 }
