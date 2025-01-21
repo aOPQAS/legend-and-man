@@ -105,9 +105,6 @@ func Cat(filename string, opts Options) {
 	}
 }
 
-// Подправить работу флага -e, сейчас выводит $ на новой строке
-// Подправить работу флага -T, не показывается табуляция
-
 func main() {
 	opts, files := ParseArgs()
 
