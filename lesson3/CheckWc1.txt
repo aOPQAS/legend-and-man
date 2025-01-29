@@ -1,0 +1,6 @@
+Programming is fucking awesome when you google stuff and accidentally make something work.
+Everyone starts from scratch, scratching their heads, trying to figure out where the hell the curly brackets are missing. Errors?
+It’s not a failure, it’s just a damn ritual everyone goes through.
+Be ready: sometimes the code doesn’t work because it’s "not in the mood."
+But don’t worry, you’ll dig through that fucking Stack Overflow or search on Google, and — bam! — it works, motherfucker.
+(Hello village!)

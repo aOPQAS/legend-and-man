@@ -57,10 +57,6 @@ func Cat(filename string, opts Options) {
 	previousLine := ""
 	countrow := 1
 
-	if opts.E {
-		row += "$"
-	}
-
 	for _, char := range data {
 		if char == 10 {
 			row += string(char)
@@ -104,6 +100,9 @@ func Cat(filename string, opts Options) {
 
 	}
 }
+
+// Подправить работу флага -e, сейчас выводит $ на новой строке
+// Подправить работу флага -T, не показывается табуляция
 
 func main() {
 	opts, files := ParseArgs()
