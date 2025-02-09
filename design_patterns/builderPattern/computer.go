@@ -47,9 +47,9 @@ type ComputerDirector struct {
 
 func (d *ComputerDirector) Create() {
 	d.builder.SetCPU("9 9900X3D")
-	d.builder.SetRAM("64GB")
-	d.builder.SetStorage("2TB SSD")
-	d.builder.SetVideoCard("NVIDIA RTX 5090")
+	d.builder.SetRAM("128GB")
+	d.builder.SetStorage("16TB SSD")
+	d.builder.SetVideoCard("NVIDIA хуикс 9090")
 }
 
 func main() {

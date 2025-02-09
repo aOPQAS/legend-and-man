@@ -27,7 +27,6 @@ func NewAdapter(adaptee *Adaptee) Target {
 	return &ConcreteAdapter{adaptee}
 }
 
-// основной метод для демонстрации
 func main() {
 	fmt.Println("Adapter demo:")
 	adapter := NewAdapter(&Adaptee{})

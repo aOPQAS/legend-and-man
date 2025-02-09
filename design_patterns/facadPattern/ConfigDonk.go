@@ -12,7 +12,7 @@ type Computer struct {
 func (c *Computer) Setup() {
 	fmt.Println("Setting up your computer settings:")
 	fmt.Println("FPS:", c.fps)
-	fmt.Println("Permission:", c.resolution)
+	fmt.Println("Resolution:", c.resolution)
 	fmt.Println("Graphics:", c.graphics)
 }
 

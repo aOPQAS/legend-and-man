@@ -79,5 +79,5 @@ func main() {
 
 func printDetails(d Drug) {
 	fmt.Printf("Drug: %s\n", d.getName())
-	fmt.Printf("Dose: %d mg\n\n", d.getDose())
+	fmt.Printf("Dose: %d mg\n", d.getDose())
 }
