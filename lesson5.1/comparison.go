@@ -9,7 +9,7 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 	removed := []string{}
 	added := []string{}
 
-	// удаляем торт если название не совпадает
+	// delete cake if name does not match
 	// ADDED cake "Moonshine Muffin"
 	for _, cake1 := range recipesOld.Cakes {
 		isRemoved := true
@@ -39,7 +39,7 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 		fmt.Println("ADDED cake", cake2.Name)
 	}
 
-	// Проверяем изменение времени приготовления
+	// Checking the change in cooking time 
 	// CHANGED cooking time for cake "Red Velvet Strawberry Cake" - "45 min" instead of "40 min"
 	if cake1.Stovetime != cake2.Stovetime {
 		fmt.Printf("CHANGED cooking time for cake \"%s\" - \"%s\" instead of \"%s\"\n", cake1.Name, cake2.Stovetime, cake1.Stovetime)
@@ -48,7 +48,7 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 	oldIngredients := cake1.Ingredients
 	newIngredients := cake2.Ingredients
 
-	// Поиск удаленных ингредиентов
+	// Search for deleted ingredients
 	// REMOVED ingredient "Vanilla extract" for cake  "Red Velvet Strawberry Cake"
 	for _, oldIng := range oldIngredients {
 		isRemoved := true
@@ -62,7 +62,7 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 		}
 	}
 
-	// Поиск добавленных ингредиентов
+	// Search for added ingredients
 	// ADDED ingredient "Coffee beans" for cake  "Red Velvet Strawberry Cake"
 	for _, newIng := range newIngredients {
 		isAdded := true
@@ -76,7 +76,7 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 		}
 	}
 
-	//
+	// ...
 	// REMOVED unit "pieces" for ingredient "Cinnamon" for cake  "Red Velvet Strawberry Cake"
 	if err != nil {
 		log.Fatal(err)
