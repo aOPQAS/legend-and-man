@@ -4,7 +4,7 @@ import "encoding/xml"
 
 type Recipes struct {
 	XMLName xml.Name `xml:"recipes" json:"-"`
-	Cake    []Cake   `xml:"cake" json:"cake"`
+	Cakes   []Cake   `xml:"cake" json:"cake"`
 }
 
 type Cake struct {
