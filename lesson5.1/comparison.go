@@ -68,6 +68,7 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 		isAdded := true
 		for _, oldIng := range oldIngredients {
 			if newIng.Itemname == oldIng.Itemname {
+
 				isAdded = false
 			}
 		}
@@ -76,8 +77,35 @@ func compareCakes(cake1 Cake, cake2 Cake) ([]string, []string) {
 		}
 	}
 
-	// ...
+	/*
+	needs to be completed:
+	CHANGED unit count for ingredient "Strawberries" for cake  "Red Velvet Strawberry Cake" - "8" instead of "7"
+	REMOVED unit "pieces" for ingredient "Cinnamon" for cake  "Red Velvet Strawberry Cake"
+	*/
+
+
+	// CHANGED unit for ingredient "Flour" for cake  "Red Velvet Strawberry Cake" - "mugs" instead of "cups"
+
+	if cake1.Itemunit != cake2.Itemunit {
+		fmt.Printf("CHANGED ingredient unit for cake \"%s\" - \"%s\" instead of \"%s\"\n", cake1.Name, cake2.Itemunit, cake1.Itemunit)
+	}
+	
+	// CHANGED unit count for ingredient "Strawberries" for cake  "Red Velvet Strawberry Cake" - "8" instead of "7"
+
+	if cake1.Itemcount != cake2.Itemcount {
+		fmt.Printf("CHANGED unit count for ingredient \"%s\" for cake \"%s\" - \"%s\" instead of \"%s\"\n",cake1.Itemname, cakeName, cake2.Itemcount, cake1.Itemcount)
+	}
+	
+	// Search for deleted ingredients (removed a unit of pieces)
 	// REMOVED unit "pieces" for ingredient "Cinnamon" for cake  "Red Velvet Strawberry Cake"
+
+
+
+	
+	// code...
+
+
+
 	if err != nil {
 		log.Fatal(err)
 	}
