@@ -98,7 +98,6 @@ func compareCakes(oldRecipes, newRecipes Recipes) {
 						}
 					}
 				}
-
 				// REMOVED unit
 				// REMOVED unit "pieces" for ingredient "Cinnamon" for cake  "Red Velvet Strawberry Cake"
 				for _, oldIng := range oldIngredients {
