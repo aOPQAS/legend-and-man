@@ -51,7 +51,6 @@ func compareCakes(oldRecipes, newRecipes Recipes) {
 			if cake1.Name == cake2.Name {
 				oldIngredients := cake1.Ingredients
 				newIngredients := cake2.Ingredients
-
 				// ADDED ingredient
 				// ADDED ingredient "Coffee beans" for cake  "Red Velvet Strawberry Cake"
 				for _, newIng := range newIngredients {
