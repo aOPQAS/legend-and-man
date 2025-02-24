@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-func mainn() {
+func main() {
 	var n int
 	_, err := fmt.Scan(&n)
 	if err != nil {
@@ -36,7 +36,6 @@ func mainn() {
 	fmt.Println("SD:", sd)
 }
 
-// медиана
 func Median(array []float64) float64 {
 	sort.Float64s(array)
 	n := len(array)
@@ -47,7 +46,6 @@ func Median(array []float64) float64 {
 	return array[n/2]
 }
 
-// среднее значение
 func Mean(array []float64) float64 {
 	sum := 0.0
 	for _, num := range array {
@@ -56,7 +54,6 @@ func Mean(array []float64) float64 {
 	return sum / float64(len(array))
 }
 
-// отклонение
 func SD(array []float64, mean float64) float64 {
 	sum := 0.0
 	for _, i := range array {
