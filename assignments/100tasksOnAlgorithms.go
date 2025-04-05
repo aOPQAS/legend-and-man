@@ -30,7 +30,7 @@
 
 // // Fibonacci sequence
 // func fibonacci(n int) int {
-// 	if n <= 1 {
+// 	if n <= 1 { // 1, 2, 2, 3, 3, 5, 5, 8 tsss selo!!
 // 		return n
 // 	}
 // 	a, b := 0, 1
@@ -63,7 +63,6 @@
 // 			duplicateCount++
 // 		}
 // 	}
-
 // 	return duplicateCount
 // }
 
@@ -87,4 +86,3 @@
 // 	fmt.Println("Duplicate count:", countDuplicates("asgogoogogoa"))
 // 	fmt.Println("Insert position:", searchInsert([]int{5, 61, 754, 8, 23, 4, 5, 676}, 8))
 // }
-
